@@ -161,6 +161,7 @@ void NETSGPClient::sendCommand(const uint32_t deviceID, const Command command, c
 
 bool NETSGPClient::sendCommandAndValidate(const uint32_t deviceID, const Command command, const uint8_t value)
 {
+    mStream.flush();
     sendCommand(deviceID, command, value);
     if (waitForMessage() && findAndReadReply(command))
     {
